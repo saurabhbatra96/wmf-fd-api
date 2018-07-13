@@ -6,6 +6,8 @@
 
 #### Resource Definition
 
+|  |  |
+:-----------:|:----------:
 | **Base Path** | /v1/transaction |
 | **Functionality** | Validates transactions as fraud/not fraud |
 | **Verbs** | VALIDATE |
