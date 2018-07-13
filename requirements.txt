@@ -2,4 +2,5 @@ numpy
 scipy
 sklearn
 pickle
-Flask
+flask
+flask-restful
