@@ -21,6 +21,7 @@ class Transaction(Resource):
 
 		# ML model evaluates transaction as fraud/not fraud.
 		# MLBackend.predict(trans_data)
+		# app.logger.info('%s transaction processed.', trans_data['id'])
 
 		return {"fraud" : False};
 
