@@ -4,6 +4,7 @@ import numpy as np
 import sklearn
 import gib_detect_train
 import datetime
+from sklearn.ensemble import GradientBoostingClassifier
 
 class Preprocessor:
 
@@ -32,10 +33,10 @@ class Preprocessor:
 	    pdf['name_len'] = pdf['name'].map(lambda x : len(x))
 	    
 	    # name gibberish score
-	    name_model_data = pickle.load(open('gib_model.pki', 'rb'))
+	    name_model_data = pickle.load(open('../private/gib_model.pki', 'rb'))
 	    name_model_mat = name_model_data['mat']
 	    gib_score = lambda x : gib_detect_train.avg_transition_prob(x, name_model_mat)
-	    pdf['name_gibberish_score'] = pdf['name'].map(Preprocessor.gib_score)
+	    pdf['name_gibberish_score'] = pdf['name'].map(gib_score)
 	    
 	    # name vowel ratio
 	    pdf['name_vowel_ratio'] = pdf['name'].apply(Preprocessor.vowel_ratio)
@@ -98,11 +99,23 @@ class Preprocessor:
 
 	@staticmethod
 	def factorize_cat_cols(pdf):
-	    return pdf
+		mapping = pd.read_pickle('../private/data-mappings.pkl')
+
+		# factorize using training data-mappings
+		pdf['country'] = np.where(mapping['country'].values==pdf['country'].values[0])[0][0]
+		pdf['currency'] = np.where(mapping['currency'].values==pdf['currency'].values[0])[0][0]
+		pdf['financial_type_id'] = np.where(mapping['financial_type_id'].values==pdf['financial_type_id'].values[0])[0][0]
+		pdf['gateway'] = np.where(mapping['gateway'].values==pdf['gateway'].values[0])[0][0]
+		pdf['payment_instrument_id'] = np.where(mapping['payment_instrument_id'].values==pdf['payment_instrument_id'].values[0])[0][0]
+		pdf['payment_method'] = np.where(mapping['payment_method'].values==pdf['payment_method'].values[0])[0][0]
+		pdf['utm_campaign'] = np.where(mapping['utm_campaign'].values==pdf['utm_campaign'].values[0])[0][0]
+		pdf['utm_medium'] = np.where(mapping['utm_medium'].values==pdf['utm_medium'].values[0])[0][0]
+
+		return pdf
 
 	@staticmethod
 	def remove_unused_features(pdf):
-	    pdf = pdf.drop(['name', 'receive_date'], axis=1)
+	    pdf = pdf.drop(['name', 'receive_date', 'contrib_id'], axis=1)
 	    return pdf
 
 	@staticmethod
