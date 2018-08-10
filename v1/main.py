@@ -48,7 +48,7 @@ class Transaction(Resource):
 		res = mlb.predict(inp)
 		app.logger.info('%s transaction processed.', args['contrib_id'])
 
-		return {"proba_score" : prob, "output" : res};
+		return {"proba_score" : prob, "prediction" : res};
 
 api.add_resource(Transaction, '/transaction')
 
