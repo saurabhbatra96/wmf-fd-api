@@ -43,3 +43,5 @@
 	"proba_score": "float - probability score of txn being fraud"
 }
 ```
+
+## Installation and usage
