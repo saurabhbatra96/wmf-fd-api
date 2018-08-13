@@ -45,3 +45,8 @@
 ```
 
 ## Installation and usage
+* Install the required python libraries using pip install. Strongly recommended that you do that in a virtualenv as there are dependencies on old scikit libraries.
+* Make sure the private folder is populated with the required files. In order to generate them, follow - https://github.com/saurabhbatra96/wmf-fraud-pipeline#pipeline-steps---importing-a-freshupdated-version-of-the-model-into-the-api
+* Move into the api version directory - `$ cd v1`.
+* Start the api with `$ python main.py`
+* The api should be ready to receive POST requests at http://localhost:5000/api/v1/transaction
