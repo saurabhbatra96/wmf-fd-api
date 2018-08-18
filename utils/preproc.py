@@ -120,5 +120,5 @@ class Preprocessor:
 
 	@staticmethod
 	def reorder_cols(pdf):
-	    pdf = pdf[['financial_type_id','payment_instrument_id','total_amount','currency','gateway','payment_method','country','utm_medium','utm_campaign','avs_filter','cvv_filter','country_filter','email_domain_filter','utm_filter','ip_filter','minfraud_filter','name_len','name_gibberish_score','name_vowel_ratio','day_of_week','time_of_day','utm_filter_isnan','avs_filter_isnan','email_domain_filter_isnan','ip_filter_isnan','cvv_filter_isnan','country_filter_isnan','minfraud_filter_isnan']]
+	    pdf = pdf[['financial_type_id','payment_instrument_id','usd_amount','currency','total_amount','gateway','payment_method','country','utm_medium','utm_campaign','avs_filter','cvv_filter','country_filter','email_domain_filter','utm_filter','ip_filter','minfraud_filter','name_len','name_gibberish_score','name_vowel_ratio','day_of_week','time_of_day','utm_filter_isnan','avs_filter_isnan','email_domain_filter_isnan','ip_filter_isnan','cvv_filter_isnan','country_filter_isnan','minfraud_filter_isnan']]
 	    return pdf
